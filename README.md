@@ -1,2 +1,2 @@
-# CTSI_FlowModeling
+# borghesilab
 Computational flow modeling of human B cells
