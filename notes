@@ -1,0 +1,6 @@
+-- vision of making the analytical pipeline available to the university wide flow cytometry community
+-- can think of three publications from this work: 
+1) A domain science publication showing results and methods, 2) A computer science publication, 3) Negative/Null results
+-- think of using python for the work--identify potential packages, libraries
+-- figure out the nature of data and scope of parallelization
+-- think of translational aspects.
