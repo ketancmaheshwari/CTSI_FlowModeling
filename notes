@@ -1,14 +1,14 @@
--- Make the pipeline available to the university wide flow cytometry community
+-- Make the pipeline available to the university flow cytometry community
 
--- Three possible publications from this work: 
- 1) A domain science publication showing results and methods,
- 2) A computer science publication,
- 3) Negative/Null results
+-- Possibility of using python for the work--identify potential packages, libraries
 
--- think of using python for the work--identify potential packages, libraries
-
--- Parallelization: Nature of algorithms and data
+-- Parallelization: algorithms and data
 
 -- Translational aspects
 
 -- End to end pipeline: from instruments to HPC
+
+-- Possible publications: 
+ 1) A domain science publication--results and methods,
+ 2) A computer science publication--parallelization and HPC,
+ 3) Negative/Null results--if applicable
