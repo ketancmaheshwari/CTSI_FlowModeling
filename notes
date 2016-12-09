@@ -13,6 +13,9 @@ Computational:
 2) Investigate tSNE parallelization. Proof of concept (6 month goal). Implementation, if feasible (1 year goal).
 3) Investigate end-to-end data pipeline in which data collected at the flow cytometer can be automatically sent to HPC servers (establish community interest and potential barriers, 6 month goal)
 
+Community:
+1) Strategic recruitment of 1-2 other user groups; make computational approaches available and troubleshoot pipeline (6 month goal)
+2) Make computational flow modeling pipeline broadly available to community (1 year goal)
 
 
 -- Make the pipeline available to the university flow cytometry community
