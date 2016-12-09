@@ -1,3 +1,20 @@
+==Objectives
+
+Biological:
+1) Determine if particular lymphoid tissues have distinctive subsets of B cells; agglomerative clustering.
+2) Establish the interrelationships between cells of different lymphoid tissues; relationship modeling.
+3) Compare the B cell composition of lymphoid versus non-lymphoid tissue; agglomerative clustering followed by relationship modeling
+4) Identify novel phenotypic populations; agglomerative clustering with retention of single cell information.
+
+Timeline: (n=5 donors, 6 month goal; n=30 donors 1 year goal)
+
+Computational:
+1) Implement HPC batch processing of flow cytometry data (6 month goal).
+2) Investigate tSNE parallelization. Proof of concept (6 month goal). Implementation, if feasible (1 year goal).
+3) Investigate end-to-end data pipeline in which data collected at the flow cytometer can be automatically sent to HPC servers (establish community interest and potential barriers, 6 month goal)
+
+
+
 -- Make the pipeline available to the university flow cytometry community
 
 -- Possibility of using python for the work--identify potential packages, libraries
