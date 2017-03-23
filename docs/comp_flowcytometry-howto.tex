@@ -1,0 +1,339 @@
+%---------------------------------------------------
+%	PACKAGES AND OTHER DOCUMENT CONFIGURATIONS
+%---------------------------------------------------
+
+\documentclass[landscape,a0paper,fontscale=0.285]{baposter} % Adjust the font scale/size here
+\title{Cheat Sheet}
+\usepackage[brazilian]{babel}
+\usepackage[utf8]{inputenc}
+
+\usepackage{graphicx} % Required for including images
+\graphicspath{{figures/}} % Directory in which figures are stored
+
+\usepackage{xcolor}
+\usepackage{colortbl}
+\usepackage{tabu}
+%\usepackage{hyperref}
+
+\usepackage{mathtools}
+%\usepackage{amsmath} % For typesetting math
+\usepackage{amssymb} % Adds new symbols to be used in math mode
+
+\usepackage{booktabs} % Top and bottom rules for tables
+\usepackage{enumitem} % Used to reduce itemize/enumerate spacing
+\usepackage{palatino} % Use the Palatino font
+\usepackage[font=small,labelfont=bf]{caption} % Required for specifying captions to tables and figures
+
+\usepackage{multicol} % Required for multiple columns
+\setlength{\columnsep}{1.5em} % Slightly increase the space between columns
+\setlength{\columnseprule}{0mm} % No horizontal rule between columns
+
+\usepackage{tikz} % Required for flow chart
+\usetikzlibrary{decorations.pathmorphing}
+\usetikzlibrary{shapes,arrows} % Tikz libraries required for the flow chart in the template
+\setlist[itemize]{leftmargin=*}
+\setlist[enumerate]{leftmargin=*}
+\newcommand{\compresslist}{ % Define a command to reduce spacing within itemize/enumerate environments, this is used right after \begin{itemize} or \begin{enumerate}
+\setlength{\itemsep}{1pt}
+\setlength{\parskip}{0pt}
+\setlength{\parsep}{0pt}
+}
+
+\definecolor{lightblue}{rgb}{0.145,0.6666,1} % Defines the color used for content box headers
+\definecolor{pittblue}{RGB}{20,41,87} % Defines the color used for content box headers
+\definecolor{pittgold}{RGB}{205,184,125} % Defines the color used for content box headers
+
+\newcommand*{\R}{\texttt{ R }}
+
+\begin{document}
+
+\begin{poster}
+{
+ headerborder=closed, % Adds a border around the header of content boxes
+ colspacing=0.8em, % Column spacing
+ bgColorOne=white, % Background color for the gradient on the left side of the poster
+ bgColorTwo=white, % Background color for the gradient on the right side of the poster
+ borderColor=pittblue, % Border color
+ headerColorOne=pittblue, % Background color for the header in the content boxes (left side)
+ headerColorTwo=pittgold, % Background color for the header in the content boxes (right side)
+ headerFontColor=white, % Text color for the header text in the content boxes
+ boxColorOne=white, % Background color of the content boxes
+ textborder=roundedleft, % Format of the border around content boxes, can be: none, bars, coils, triangles, rectangle, rounded, roundedsmall, roundedright or faded
+ eyecatcher=true, % Set to false for ignoring the left logo in the title and move the title left
+ headerheight=0.1\textheight, % Height of the header
+ headershape=roundedright, % Specify the rounded corner in the content box headers, can be: rectangle, small-rounded, roundedright, roundedleft or rounded
+ headerfont=\Large\bf\textsc, % Large, bold and sans serif font in the headers of content boxes
+ %textfont={\setlength{\parindent}{1.5em}}, % Uncomment for paragraph indentation
+ linewidth=2pt % Width of the border lines around content boxes
+}
+%----------------------------------------------------------------
+%	TITLE
+%----------------------------------------------------------------
+{\bf\textsc{Computational Flow Cytometry "How To"}\vspace{0.5em}} % Poster title
+{\textsc{C o m p u t a t i o n a l \ \ \ \ \ F l o w C y t o m e t r y \ \ \ \ \ " H o w - T o " \hspace{12pt}}}
+{\textsc{Dept. of Immunology and Center for Research Computing \\ University of Pittsburgh \hspace{12pt}}} 
+
+%------------------------------------------------
+% ACCESS
+%------------------------------------------------
+\headerbox{Get Started}{name=access,column=0,row=0}{
+This document describes how to do Computational Flow Cytometry.
+
+We will process Flow Cytometry data to generate plots and diagrams.  We will
+use the HTC cluster facility from the Center for Research Computing (CRC) at
+Pitt.  We will use the Flow Cytometry data generated at the Department of
+Immunology at Pitt. We will use some of the programs in \R language. The
+programs are originally developed by the Saeys lab (see credits \& ack).
+
+}
+
+\headerbox{Logging in and Basics}{name=commoncommands, column=1,span=2, row=0}{
+All the following commands need to be typed in a \textbf{terminal}. If you are
+on a Mac OS, invoke the "terminal" program. You will see a \$ sign and a curser
+waiting for you to type in commands. To execute, press enter after a command is
+typed.
+
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - Connect}}
+\texttt{ssh -l <yourpittid> htc.sam.pitt.edu \#connect to the HTC cluster }\\
+Note that everything after the \# character is a comment and \textbf{is not} required to
+be typed in when you try out the commands.\\
+If you are connected to the HTC cluster, you will see a command prompt similar to:\\
+\texttt{[login0a.htc.sam.pitt.edu ~]\$}
+
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - Data}}
+Data may be moved from the cluster to your local computer as follows:\\
+\texttt{scp afile.tgz <yourpittid>@htc.sam.pitt.edu:\textasciitilde/  \#copy from local computer to smp cluster }\\
+\texttt{scp <yourpittid>@htc.sam.pitt.edu:\textasciitilde/afile.tgz .  \#copy from htc to local computer} \\
+%------
+}
+
+%----------------------------------------------------------------
+%	Help
+%----------------------------------------------------------------
+\headerbox{Get Help}{name=help,column=3,span=1,row=0}{
+Does the FAQ answer your question?\\ \texttt{http://core.sam.pitt.edu/faqs}\\
+Search the website:\\ \texttt{http://core.sam.pitt.edu/search}\\
+Read the documentation\\
+\texttt{http://core.sam.pitt.edu/node/6}\\
+%Seek help \\ 
+%\linebreak
+%% {lp{5.8cm}lp{1.0cm}|}
+%-----
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - When submitting support ticket}}
+\begin{enumerate}\compresslist
+\item Provide a descriptive, specific title
+\item Specify the cluster the ticket applies to
+\item Provide directory location if applicable
+\end{enumerate}
+\texttt{{\small core.sam.pitt.edu/node/add/support-ticket}}
+\linebreak\\
+%------
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - Contact / Feedback}}
+Please send your feedback and suggestions for improvement to this document at \texttt{http://core.sam.pitt.edu/contact}
+%-----------------------------------
+}
+
+%----------------------------------------------------------------
+%	Software
+%----------------------------------------------------------------
+\headerbox{Common Commands}{name=software,column=0,row=1, below=access}{
+\texttt{ls \#list files and dirs} \\
+\texttt{pwd \#print current dir path} \\
+\texttt{cd <dirname> \#change to dir <dirname>} \\
+\texttt{cd \#change to the home dir } \\
+\texttt{cat <filename> \#display contents of file <filename>} \\
+\texttt{cp file1 file2 \#copy file1 to file2 } \\
+\texttt{mv file1 file2 \#rename file1 to file2 } \\
+\texttt{mv file1 <dirname>/ \#move file1 to <dirname> } \\
+\texttt{touch anewfile \#create a new file anewfile  } \\
+\texttt{rm <filename> \#delete a file named <afilename>  } \\
+\texttt{mkdir <adirname> \#create a dir named <adirame>  } \\
+\texttt{man rm \#read manual of the command rm } \\
+\texttt{grep 'word' afile \#search for 'word' in afile } \\
+\texttt{exit \#exit out of the terminal } \\
+\texttt{nano afile \#open the nano editor to edit afile } \\
+}
+
+%----------------------------------------------------------------
+%	Hardware
+%----------------------------------------------------------------
+\headerbox{Programs}{name=hardware,column=1, span=2, row=1, below=commoncommands}{
+Set 1 contains the following programs:
+\begin{enumerate}\compresslist
+\item plotsettings
+\item preprocessing
+\item QC
+\end{enumerate}
+Set 2 contains the following programs:
+\begin{enumerate}\compresslist
+\item SPADE
+\item Rtsne
+\item FlowSOM
+\end{enumerate}
+Set 3 contains the following programs:
+\begin{enumerate}\compresslist
+\item FlowMeans
+\item FlowPeaks
+\item FlowClust
+\item Immunoclust
+\item samSPECTRAL
+\item FlowSOM Meta
+\end{enumerate}
+Set 4 contains the following programs:
+\begin{enumerate}\compresslist
+\item citrus
+\end{enumerate}
+}
+\headerbox{Credits \& Acknowledgements}{name=credits,column=3, below=help}{
+We acknowledge the Saeys lab for the original \R programs for the data
+	processing. We have made changes to the \R programs to adapt to the current
+	data from Department of Immunology.  }
+
+
+\end{poster}
+\newpage
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%    SECOND PAGE    %%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{poster}
+{
+borderColor=pittblue, headerColorOne=pittblue, headerColorTwo=pittgold,
+	headerborder=closed, colspacing=0.8em, bgColorOne=white, bgColorTwo=white,
+	headerFontColor=white, boxColorOne=white, textborder=roundedleft,
+	eyecatcher=true, headerheight=0.1\textheight, headershape=roundedright,
+	headerfont=\Large\bf\textsc, linewidth=2pt
+}
+
+%----------------------------------------------------------------
+%	TITLE SECTION 
+%----------------------------------------------------------------
+%{\bf\textsc{Computational Flow Cytometry "How To"}\vspace{0.5em}} % Poster title
+{\textsc{C o m p u t a t i o n a l \ \ \ \ \ F l o w C y t o m e t r y \ \ \ \ \ " H o w - T o " \hspace{12pt}}}
+{\textsc{Dept. of Immunology and Center for Research Computing \\ University of Pittsburgh \hspace{12pt}}} 
+
+\headerbox{Computation}{name=computation,column=0}{
+CRC clusters use the SLURM scheduler. \\
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - Job Management}}
+\texttt{sinfo}\hfill \#view info about nodes\\
+\texttt{sbatch set1.sbatch}\hfill  \#submit a job \\
+\texttt{squeue -u \$(whoami)}\hfill \#check job status \\
+\texttt{scancel 12345}\hfill \#cancel job with id 12345\\
+\texttt{squeue -j 12345 -o \%S}\hfill \#expected or actual start time of job id 12345\\
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - Job Status Codes}}
+\texttt{PD} \dotfill  Pending \\
+\texttt{R}  \dotfill  Running \\
+\texttt{CA} \dotfill  Cancelled \\
+\texttt{F} \dotfill   Failed \\
+\texttt{CF} \dotfill   Configuring \\
+\texttt{TO} \dotfill   Timed Out \\
+\texttt{PR} \dotfill   Preempted \\
+\texttt{NF} \dotfill   Node Failed \\
+\texttt{S} \dotfill   Suspended \\
+\texttt{CG} \dotfill  Completing \\
+\texttt{CD} \dotfill  Completed \\
+}
+
+\headerbox{Notes}{name=notes, below=computation, column=0,row=1}{
+\begin{itemize}\compresslist
+\item To print this document on letter size paper use the printer's \textbf{fit to size} option.
+\item The source code for all the programs and a \LaTeX\: file of this document may be found on git: \texttt{github.com/\\ketancmaheshwari/borghesilab}.
+\end{itemize}
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - Acronyms}}
+\texttt{HTC} \dotfill  High Throughput Computing\\
+\texttt{CRC} \dotfill  Center for Research Computing\\
+}
+
+%------------------------------------------------
+% Example SLURM Script
+%------------------------------------------------
+
+\headerbox{Example SLURM Scripts}{name=exampleslurm,column=1,span=2,row=0}{
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - set1}}
+\#!/bin/bash\\
+\#SBATCH -N 1 \\
+\#SBATCH -{}-job-name=set1\\
+\#SBATCH -{}-output=set1.out\\ 
+\#SBATCH -{}-error=set1.err \\
+\#SBATCH -{}-time=00:20:00 \\
+\#SBATCH -{}-cpus-per-task=8 \\
+\#SBATCH -{}-mem=32g \\
+module purge\\
+module load R\\
+module load gsl\\ 
+Rscript 1\_plotSettings.R\\
+echo "Finished 1\_plotSettings.R"\\
+Rscript 1\_preprocessing.R\\
+echo "Finished 1\_preprocessing.R"\\
+Rscript 1\_QC.R\\
+echo "Finished 1\_QC.R"\\
+echo "Set 1 finished"\\
+
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - set2}}
+\#!/bin/bash\\
+\#SBATCH -N 1 \\
+\#SBATCH --job-name=set2\\
+\#SBATCH --output=set2.out\\ 
+\#SBATCH --error=set2.err \\
+\#SBATCH --time=00:40:00 \\
+\#SBATCH --cpus-per-task=8 \\
+\#SBATCH --mem=32g \\
+module purge\\
+module load R\\
+module load gsl\\ 
+Rscript 2\_Rtsne.R\\
+echo "Finished 2\_Rtsne.R"\\
+Rscript 2\_SPADE.R\\
+echo "Finished 2\_SPADE.R"\\
+Rscript 2\_SPADE\_10000.R\\
+echo "Finished 2\_SPADE\_10000.R"\\
+echo "Set 2 finished"
+}
+
+\headerbox{Troubleshoot}{name=troubleshoot,column=3,row=0}{
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - ssh connection}}
+\begin{itemize}\compresslist
+	\item If you are on a wireless network, make sure the \textbf{VPN} connection is established.
+	\item Use \texttt{ping} to check network connectivity to host, eg. \texttt{ping htc.sam.pitt.edu}
+	\item Use ssh in verbose mode with \texttt{-v} to identify possible causes, eg. \texttt{ssh -v h2p.crc.pitt.edu}
+\end{itemize}
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - jobs submission}}
+\begin{itemize}\compresslist
+	\item Sanity test the environment by submitting a simple job, eg.\\
+\texttt{
+\#!/bin/bash\\
+\#SBATCH --output=test.out\\ 
+\#SBATCH --error=test.err\\ 
+\#SBATCH -t 00:10:00\\
+srun echo "Hello \$(hostname)"
+}
+	\item Check output of \texttt{squeue -t PD} and \texttt{smap} 
+\end{itemize}
+%\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - data access}}
+
+\colorbox[HTML]{cdb87d}{\makebox[\textwidth-2\fboxsep][l]{\bf - Linux commands}}
+\begin{itemize}\compresslist
+\item Copying and pasting the error message into Google often returns helpful results on common pitfalls.
+\item One common cause of Linux commands failing is that they do not find files
+in the path where they are expecting them. Make sure to verify the files are in
+the location where they are specified in the programs or as command line
+arguments.
+\end{itemize}
+}
+%----------------------------------------------------------------
+%	REFERENCES  {name=objectives,column=0,row=0}
+%----------------------------------------------------------------
+%\headerbox{bb}{name=references,column=1,row=0}{}
+%----------------------------------------------------------------
+%	FUTURE RESEARCH
+%----------------------------------------------------------------
+%\headerbox{aa}{name=futureresearch,column=1,row=0}{}
+%----------------------------------------------------------------
+%	CONTACT INFORMATION
+%----------------------------------------------------------------
+%\headerbox{Contact Information}{name=contact,column=2,span=2,row=0}{}
+%----------------------------------------------------------------
+\end{poster}
+\end{document}
+
