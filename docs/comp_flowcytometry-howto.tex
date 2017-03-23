@@ -157,7 +157,7 @@ Please send your feedback and suggestions for improvement to this document at \t
 %----------------------------------------------------------------
 %	Hardware
 %----------------------------------------------------------------
-\headerbox{Quick Step by Step Guide}{name=hardware,column=1, span=2, row=1, below=commoncommands}{
+\headerbox{Quick Step-by-Step Guide}{name=hardware,column=1, span=2, row=1, below=commoncommands}{
 \begin{enumerate}
 \item Open a command prompt terminal on your computer, usually the terminal program on Mac OS
 \item Log in to the \texttt{HTC} cluster at CRC: \texttt{ssh -l <pittID> htc.sam.pitt.edu}
@@ -167,6 +167,10 @@ Please send your feedback and suggestions for improvement to this document at \t
 \item Periodically check of the job is finished: \texttt{squeue -u \$(whoami)}
 \item Once the job is finished move the results back to your local computer
 \item If the job resulted in errors, take a look at the troubleshooting section to see if problem may be fixed.
+\item Wait for job to finish, ie. no job entry to be found as output of the \texttt{squeue -u \$(whoami)} command.
+\item The results of the computation are saved in the \texttt{\textbf{results}} directory.
+\item To copy the results back to your computer from the HTC cluster, open a new terminal on your computer and run the following command:\\
+\texttt{scp -r <pittID>@htc.sam.pitt.edu:~/borghesilab/home-experiments/results .}
 \end{enumerate}
 %Set 1 contains the following programs:
 %\begin{enumerate}\compresslist
