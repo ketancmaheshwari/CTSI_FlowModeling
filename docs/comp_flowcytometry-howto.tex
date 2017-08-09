@@ -111,6 +111,7 @@ Data may be moved from the cluster to your local computer as follows:\\
 %	Help
 %----------------------------------------------------------------
 \headerbox{Get Help}{name=help,column=3,span=1,row=0}{
+Request an account: \texttt{http://core.sam.pitt.edu/apply}\\
 Does the FAQ answer your question?\\ \texttt{http://core.sam.pitt.edu/faqs}\\
 Search the website:\\ \texttt{http://core.sam.pitt.edu/search}\\
 Read the documentation\\
@@ -139,15 +140,15 @@ Please send your feedback and suggestions for improvement to this document at \t
 \headerbox{Common Commands}{name=software,column=0,row=1, below=access}{
 \texttt{\textbf{ls} \#list files and dirs}\\
 \texttt{\textbf{pwd} \#print current dir path}\\
-\texttt{\textbf{cd <adir>} \#change to dir <dir>}\\
+\texttt{\textbf{cd \emph{adir}} \#change to adir}\\
 \texttt{\textbf{cd } \#change to the home dir}\\
-\texttt{\textbf{cat <afile>} \#display contents of <afile>}\\
+\texttt{\textbf{cat \emph{afile}} \#display contents of afile}\\
 \texttt{\textbf{cp file1 file2} \#copy file1 to file2}\\
 \texttt{\textbf{mv file1 file2} \#rename file1 to file2}\\
-\texttt{\textbf{mv file1 <adir>/} \#move file1 to <dirname>}\\
+\texttt{\textbf{mv file1 \emph{adir}/} \#move file1 to \emph{adir}}\\
 \texttt{\textbf{touch afile} \#create a new file}\\
-\texttt{\textbf{rm <filename>} \#delete a file <afilename>}\\
-\texttt{\textbf{mkdir <adir>} \#create a new dir}\\
+\texttt{\textbf{rm \emph{filename}} \#delete a file afilename}\\
+\texttt{\textbf{mkdir \emph{adir}} \#create a new dir}\\
 \texttt{\textbf{man rm} \#read manual of rm}\\
 \texttt{\textbf{grep 'word' afile} \#search for 'word' in afile}\\
 \texttt{\textbf{exit} \#exit out of the terminal}\\
@@ -159,8 +160,9 @@ Please send your feedback and suggestions for improvement to this document at \t
 %----------------------------------------------------------------
 \headerbox{Quick Step-by-Step Guide}{name=hardware,column=1, span=2, row=1, below=commoncommands}{
 \begin{enumerate}
+\item Ensure that you have an account current with CRC. See the help section on this document for more.
 \item Open a command prompt terminal on your computer, usually the terminal program on Mac OS
-\item Log in to the \texttt{HTC} cluster at CRC: \texttt{ssh -l <pittID> htc.sam.pitt.edu}
+\item Log in to the \texttt{HTC} cluster at CRC: \texttt{ssh \emph{pittID}@htc.sam.pitt.edu}
 \item Copy the directory containing \R programs, SLURM job scripts and borghesilab data (\textbf{one-time step}): \texttt{cp -r /ihome/sam/ketan/borghesilab \$HOME/}
 \item Change into the \texttt{scripts} directory: \texttt{cd borghesilab/home-experiments/scripts}
 \item Submit the first set of programs as SLURM job to the cluster: \texttt{sbatch set1.sbatch}
@@ -170,7 +172,7 @@ Please send your feedback and suggestions for improvement to this document at \t
 \item Wait for job to finish, ie. no job entry to be found as output of the \texttt{squeue -u \$(whoami)} command.
 \item The results of the computation are saved in the \texttt{\textbf{results}} directory.
 \item To copy the results back to your computer from the HTC cluster, open a new terminal on your computer and run the following command:\\
-\texttt{scp -r <pittID>@htc.sam.pitt.edu:~/borghesilab/home-experiments/results .}
+\texttt{scp -r \emph{pittID}@htc.sam.pitt.edu:~/borghesilab/home-experiments/results .}
 \end{enumerate}
 %Set 1 contains the following programs:
 %\begin{enumerate}\compresslist
@@ -200,9 +202,8 @@ Please send your feedback and suggestions for improvement to this document at \t
 }
 \headerbox{Credits \& Acknowledgements}{name=credits,column=3, below=help}{
 We acknowledge the Saeys lab for the original \R programs for the data
-	processing. We have made changes to the \R programs to adapt to the current
-	data from Department of Immunology.  }
-
+processing. We have made changes to the \R programs to adapt to the current
+data from Department of Immunology.  }
 
 \end{poster}
 \newpage
